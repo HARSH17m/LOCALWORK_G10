@@ -1,32 +1,64 @@
-{% extends "dashboard/base.html" %}
-{% block title %}
-SHOW
-{% endblock  %}
-
+{% extends "dashboard/base.html" %} {% block title %} SHOW {% endblock %}
 {%block body%}
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">IMAGE</th>
-      <th scope="col">TITLE</th>
-      <th scope="col">CONTEXT</th>
-      <th scope="col">ACTION</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for post in posts%}
-    <tr>
-        <th scope="row">{{post.id}}</th>
-        <td><img src="{{post.image.url}}" height='200px' ></td>
-        <td>{{post.title}}</td>
-        <td>{{post.context}}</td>
-        <td>
-          <a class="btn btn-primary" href="{% url 'update_post' post_id=post.id %}" value="UPDATE">UPDATE</a>
-          <a class="btn btn-danger" href="{% url 'delete_post' post_id=post.id %}" value="DELETE">DELETE</a>
-        </td>        
-    </tr>
+<div class="container text-center">
+  <div class="row">
+    {% for post in posts%} 
+    {% comment %} 
+    <div class="col-sm-4">
+      <div class="card" style="width: 18rem">
+        <img src="{{post.image.url}}" height="200px" />
+        <div class="card-body">
+          <h5 class="card-title">{{post.title}}</h5>
+          <p class="card-text">{{post.context}}</p>
+        </div>
+        <div class="card-body">
+          <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a>
+        </div>
+      </div>
+    </div>
+    {% endcomment %}
+    <div class="card m-1 bg-dark text-danger" style="max-width: 540px">
+      <div class="row g-0">
+        <div class="col-md-5">
+          <img
+            class="img-fluid rounded-start"
+            style="aspect-ratio: 1; object-fit: contain"
+            src="{{post.image.url}}"
+            height="300px"
+          />
+          <span
+            class="translate-middle-y justify-content-center badge rounded-pill text-white border border-secondary"
+          >
+            {{ post.id }}
+          </span>
+        </div>
+        <div class="col-md-6">
+          <div class="card-body">
+            <h5 class="card-title">{{post.title}}</h5>
+            <p class="card-text text-warning">{{post.context}}</p>
+          </div>
+          <div class="row card-body">
+            <div class="col-md-1"></div>
+            <div class="col-md-1"></div>
+            <a
+              href="{% url 'update_post' post_id=post.id %}"
+              class="btn btn-outline-primary col-md-4 mb-1"
+              >UPDATE</a
+            >
+            <div class="col-md-1"></div>
+            <a
+              href="{% url 'delete_post' post_id=post.id %}"
+              class="btn btn-outline-danger col-md-4 mb-1"
+              >DELETE</a
+            >
+            <div class="col-md-1"></div>
+          </div>
+        </div>
+      </div>
+    </div>
     {% endfor %}
-  </tbody>
-</table>
+  </div>
+</div>
+
 {%endblock%}
