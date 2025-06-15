@@ -2,8 +2,7 @@
 {%block body%}
 <div class="container text-center">
   <div class="row">
-    {% for post in posts%} 
-    {% comment %} 
+    {% for post in posts%} {% comment %}
     <div class="col-sm-4">
       <div class="card" style="width: 18rem">
         <img src="{{post.image.url}}" height="200px" />
@@ -18,7 +17,10 @@
       </div>
     </div>
     {% endcomment %}
-    <div class="card m-1 bg-dark text-danger" style="max-width: 540px">
+    <div
+      class="card m-1 bg-dark bg-gradient text-danger border border-warning-subtle"
+      style="max-width: 540px"
+    >
       <div class="row g-0">
         <div class="col-md-5">
           <img
@@ -28,15 +30,25 @@
             height="300px"
           />
           <span
-            class="translate-middle-y d-flex justify-content-center badge rounded-pill text-white border border-secondary"
+            class="d-flex translate-middle-y justify-content-center badge rounded-pill border border-secondary"
           >
             {{ post.id }}
           </span>
         </div>
+        {% comment %} Vertical Line Separator {% endcomment %}
+        <div class="col-md-1 d-flex justify-content-center align-items-center">
+          <div
+            style="
+              width: 2px;
+              height: 70%;
+              background-color: rgba(255, 255, 255, 0.2);
+            "
+          ></div>
+        </div>
         <div class="col-md-6">
-          <div class="card-body">
-            <h5 class="card-title">{{post.title}}</h5>
-            <p class="card-text text-warning">{{post.context}}</p>
+          <div class="pt-5 text-secondary card-body">
+            <h5 class="text-end">{{post.title}}</h5>
+            <p class="text-black text-end pt-3">{{post.context}}</p>
           </div>
           <div class="row card-body">
             <div class="col-md-1"></div>
